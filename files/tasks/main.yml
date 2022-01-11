@@ -1,0 +1,23 @@
+---
+# tasks file for files
+#- name: Create User
+#    user: name=kaviya password=kaviya groups=root shell=/bin/bash
+
+- name: create directory
+  file: path=/etc/ansible/kavi1 state=directory mode=775 owner=root group=root
+
+- name: create file
+  file: path=/etc/ansible/kavi1/demo.txt state=touch
+
+- name: copy content
+  copy: content="Hello kaviya \n" dest=/etc/ansible/kavi1/demo.txt
+
+- name: using array
+  debug:
+    msg: "{{ name[1] }}"
+
+- name: Command to list files
+  shell: ls -lrt > demo.txt
+
+#- name: Remove User
+#    user: name=kaviya state=absent remove=yes force=yes
