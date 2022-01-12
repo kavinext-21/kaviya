@@ -1,8 +1,4 @@
 ---
-# tasks file for files
-#- name: Create User
-#    user: name=kaviya password=kaviya groups=root shell=/bin/bash
-
 - name: create directory
   file: path=/etc/ansible/kavi1 state=directory mode=775 owner=root group=root
 
@@ -19,5 +15,12 @@
 - name: Command to list files
   shell: ls -lrt > demo.txt
 
-#- name: Remove User
-#    user: name=kaviya state=absent remove=yes force=yes
+- name: latest version of the required package to be installed
+  yum:
+    name: firewalld
+    state: latest
+
+- name: enabled and running
+  service:
+    name: firewalld
+    state: started
